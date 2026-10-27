@@ -4,42 +4,54 @@
    ==================================================================== */
 
 :root {
-  /* Boutique Brand Colors */
-  --purple-950: #1b0422;
-  --purple-900: #2c0836;
-  --purple-850: #380b45;
-  --purple-800: #4a125b;
-  --purple-700: #651a7d;
-  --purple-600: #81259e;
-  --purple-500: #a032c2;
-  --purple-400: #be5be0;
-  --purple-200: #e7c5f5;
-  --purple-100: #f4e8fa;
-  --purple-50: #faf4fc;
+  /* Boutique Brand Colors - Inspired by Harithanjali Logo */
+  --purple-950: #2a0520; /* Deepest royal wine */
+  --purple-900: #3d082e; /* Royal plum */
+  --purple-850: #4e0d3c; /* Velvet berry */
+  --purple-800: #581142; /* Exact "Harithanjali" text & gown color */
+  --purple-700: #6d1753; /* Rich wine */
+  --purple-600: #882269; /* Elegant mulberry */
+  --purple-500: #aa3385; /* Soft berry */
+  --purple-400: #c653a1; /* Pastel berry */
+  --purple-200: #ecc2dd; /* Gentle lilac */
+  --purple-100: #f7e0ef; /* Soft blush lilac */
+  --purple-50: #fcf4f8;  /* Rose petal mist */
+
+  /* Logo Theme Colors: Warm Silk Cream, Ribbons & Champagne Gold */
+  --logo-cream-base: #fdf9f4; /* Logo warm ivory background */
+  --logo-cream-soft: #faf3ea; /* Warm silk champagne */
+  --logo-cream-warm: #f6ecdf; /* Subtle antique cream */
+  --logo-peach: #f5c4b3;      /* Logo peach ribbon */
+  --logo-peach-soft: #fdf1ec; /* Softest peach wash */
+  --logo-lilac: #dfbdd6;      /* Logo lilac ribbon */
+  --logo-lilac-soft: #f9eef5; /* Softest lilac wash */
+  --logo-gold: #c89d46;       /* Logo ring & wreath gold */
+  --logo-gold-light: #f7e6b8; /* Shimmer gold */
+  --logo-gold-dark: #997322;  /* Deep antique gold */
 
   /* Neutrals & Ivory */
   --color-white: #ffffff;
-  --color-cream: #fdfbf7;
-  --color-ivory: #faf7f2;
-  --gray-50: #f8f9fa;
-  --gray-100: #f1f3f5;
-  --gray-200: #e9ecef;
-  --gray-300: #dee2e6;
-  --gray-400: #ced4da;
-  --gray-500: #adb5bd;
-  --gray-600: #6c757d;
-  --gray-700: #495057;
-  --gray-800: #343a40;
-  --gray-900: #212529;
+  --color-cream: #fdf9f4;     /* Logo warm ivory */
+  --color-ivory: #faf4ea;     /* Logo champagne */
+  --gray-50: #fbf9f6;
+  --gray-100: #f3efe9;
+  --gray-200: #e9e3da;
+  --gray-300: #d8cfc3;
+  --gray-400: #b8ac9c;
+  --gray-500: #8f8272;
+  --gray-600: #6b6052;
+  --gray-700: #4d443a;
+  --gray-800: #332d26;
+  --gray-900: #1f1b17;
 
-  /* Luxury Gold & Vibrant Accents */
-  --gold-primary: #d4af37;
+  /* Luxury Champagne Gold (from Logo wreath & "BOUTIQUE" text) */
+  --gold-primary: #c89d46;
   --gold-light: #f3d778;
-  --gold-dark: #aa820a;
-  --accent-yellow: #ffb800;
+  --gold-dark: #997322;
+  --accent-yellow: #f59e0b;
   --accent-blue: #2563eb;
-  --accent-orange: #ff6b35;
-  --accent-red: #e63946;
+  --accent-orange: #ea580c;
+  --accent-red: #e11d48;
   --accent-green: #10b981;
 
   /* Typography */
@@ -48,11 +60,11 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
   /* Elevation & Shadows */
-  --shadow-sm: 0 2px 6px rgba(44, 8, 54, 0.05);
-  --shadow-md: 0 6px 16px rgba(44, 8, 54, 0.08);
-  --shadow-lg: 0 12px 30px rgba(44, 8, 54, 0.12);
-  --shadow-xl: 0 20px 45px rgba(44, 8, 54, 0.18);
-  --shadow-glow: 0 0 24px rgba(160, 50, 194, 0.35);
+  --shadow-sm: 0 2px 6px rgba(88, 17, 66, 0.05);
+  --shadow-md: 0 6px 16px rgba(88, 17, 66, 0.08);
+  --shadow-lg: 0 12px 30px rgba(88, 17, 66, 0.12);
+  --shadow-xl: 0 20px 45px rgba(88, 17, 66, 0.18);
+  --shadow-glow: 0 0 24px rgba(200, 157, 70, 0.35);
 
   /* Transitions */
   --transition-fast: 0.18s ease;
@@ -82,7 +94,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--gray-800);
-  background-color: var(--color-white);
+  background-color: var(--logo-cream-base);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -156,15 +168,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--purple-800), var(--purple-950));
+  background: linear-gradient(135deg, var(--purple-800), var(--purple-900));
   color: var(--color-white);
-  box-shadow: 0 6px 18px rgba(74, 18, 91, 0.3);
+  box-shadow: 0 6px 18px rgba(88, 17, 66, 0.28);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--purple-700), var(--purple-900));
+  background: linear-gradient(135deg, var(--purple-700), var(--purple-850));
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(74, 18, 91, 0.4);
+  box-shadow: 0 10px 24px rgba(88, 17, 66, 0.38);
 }
 
 .btn-secondary {
@@ -180,10 +192,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, #e5be3a, #b88d12);
+  background: linear-gradient(135deg, #e4be71, #c89d46);
   color: var(--purple-950);
   font-weight: 700;
-  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 6px 18px rgba(200, 157, 70, 0.35);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #edd08e, #d8ab52);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(200, 157, 70, 0.5);
 }
 
 .btn-gold:hover {
@@ -314,7 +332,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Announcement Bar */
 .announcement-bar {
-  background: linear-gradient(90deg, var(--purple-950), var(--purple-800), var(--purple-950));
+  background: linear-gradient(90deg, #3d082e 0%, #581142 50%, #3d082e 100%);
   color: #fff;
   padding: 0.55rem 1rem;
   font-size: 0.84rem;
@@ -323,7 +341,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   position: relative;
   z-index: 50;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(200, 157, 70, 0.35);
 }
 
 /* Main Header Navbar */
@@ -331,10 +349,10 @@ h1, h2, h3, h4, h5, h6 {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(253, 249, 244, 0.96);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--purple-100);
-  box-shadow: 0 2px 14px rgba(44, 8, 54, 0.05);
+  border-bottom: 1px solid rgba(200, 157, 70, 0.22);
+  box-shadow: 0 4px 18px rgba(88, 17, 66, 0.05);
   transition: all var(--transition-normal);
 }
 

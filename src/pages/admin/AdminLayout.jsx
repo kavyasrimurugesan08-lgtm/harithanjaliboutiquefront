@@ -188,7 +188,7 @@ export default function AdminLayout() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', color: '#059669', background: '#ecfdf5', padding: '0.35rem 0.8rem', borderRadius: 'var(--radius-full)', fontWeight: 600 }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-              <span>Backend Connected (Port 5000)</span>
+              <span>Backend Connected (Port 5001)</span>
             </div>
             <Link
               to="/"

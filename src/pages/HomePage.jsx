@@ -73,30 +73,40 @@ export default function HomePage() {
       {/* 1. HERO SECTION - Editorial High Fashion */}
       <section style={{
         position: 'relative',
-        background: 'linear-gradient(135deg, var(--purple-950) 0%, var(--purple-900) 45%, #3d0c4d 100%)',
+        background: 'linear-gradient(135deg, #2a0520 0%, #4e0d3c 45%, #380829 100%)',
         color: '#fff',
         overflow: 'hidden',
         padding: '4.5rem 0 5.5rem'
       }}>
-        {/* Decorative background ambient glows */}
+        {/* Decorative background ambient glows from Logo palette */}
         <div style={{
           position: 'absolute',
           top: '-15%',
           right: '5%',
-          width: '500px',
-          height: '500px',
+          width: '520px',
+          height: '520px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(160, 50, 194, 0.35) 0%, rgba(0, 0, 0, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(245, 196, 179, 0.3) 0%, rgba(0, 0, 0, 0) 70%)',
           pointerEvents: 'none'
         }} />
         <div style={{
           position: 'absolute',
           bottom: '-10%',
           left: '-5%',
-          width: '450px',
-          height: '450px',
+          width: '480px',
+          height: '480px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(0, 0, 0, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(200, 157, 70, 0.25) 0%, rgba(0, 0, 0, 0) 70%)',
+          pointerEvents: 'none'
+        }} />
+        <div style={{
+          position: 'absolute',
+          top: '30%',
+          left: '35%',
+          width: '400px',
+          height: '400px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(223, 189, 214, 0.2) 0%, rgba(0, 0, 0, 0) 70%)',
           pointerEvents: 'none'
         }} />
 
