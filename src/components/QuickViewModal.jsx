@@ -52,14 +52,18 @@ export default function QuickViewModal() {
           <X size={18} />
         </button>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+        <div className="quickview-grid">
           {/* Product Gallery Left */}
           <div style={{ padding: '1.5rem', background: 'var(--purple-50)', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <div style={{ position: 'relative', paddingTop: '115%', borderRadius: '12px', overflow: 'hidden', background: '#fff' }}>
               <img 
-                src={product.images?.[selectedImgIdx] || product.images?.[0]} 
+                src={product.images?.[selectedImgIdx] || product.images?.[0] || '/why-choose-banner.jpg'} 
                 alt={product.name}
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/why-choose-banner.jpg";
+                }}
               />
             </div>
             {product.images?.length > 1 && (

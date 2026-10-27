@@ -135,7 +135,7 @@ export default function CheckoutPage() {
         )}
 
         <form onSubmit={handleSubmitOrder}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '2.5rem', alignItems: 'start' }} className="checkout-grid">
+          <div className="checkout-grid">
             {/* Left: Customer Information & Delivery Address */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {/* Contact Details */}
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
                   <h3 style={{ fontSize: '1.2rem', color: 'var(--purple-950)' }}>Contact Details</h3>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="form-row">
+                <div className="form-row">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--gray-700)', marginBottom: '0.4rem' }}>
                       Full Name *
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }} className="form-row">
+                <div className="form-row" style={{ marginBottom: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--gray-700)', marginBottom: '0.4rem' }}>
                       Nearest Landmark
@@ -244,7 +244,7 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }} className="form-row">
+                <div className="form-row" style={{ marginBottom: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--gray-700)', marginBottom: '0.4rem' }}>
                       State *
@@ -386,7 +386,15 @@ export default function CheckoutPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', maxHeight: '240px', overflowY: 'auto', marginBottom: '1.5rem', paddingRight: '0.3rem' }}>
                 {cart.map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontSize: '0.88rem' }}>
-                    <img src={item.image} alt="" style={{ width: 44, height: 52, objectFit: 'cover', borderRadius: '6px', flexShrink: 0 }} />
+                    <img 
+                      src={item.image || '/why-choose-banner.jpg'} 
+                      alt="" 
+                      style={{ width: 44, height: 52, objectFit: 'cover', borderRadius: '6px', flexShrink: 0 }} 
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/why-choose-banner.jpg";
+                      }}
+                    />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontWeight: 600, color: 'var(--purple-950)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {item.name}

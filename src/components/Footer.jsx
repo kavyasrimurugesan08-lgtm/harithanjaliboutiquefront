@@ -22,13 +22,10 @@ export default function Footer() {
   const instagramHandle = settings?.instagramHandle || '@_harithanjali_boutique';
 
   return (
-    <footer style={{ background: 'linear-gradient(180deg, #24052a 0%, #15021a 100%)', color: '#f3e8f5', paddingTop: '4.5rem', paddingBottom: '2.5rem', borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
+    <footer style={{ background: 'linear-gradient(180deg, #2a0520 0%, #1a0214 100%)', color: '#f7e3ef', paddingTop: '4.5rem', paddingBottom: '2.5rem', borderTop: '1px solid rgba(200, 157, 70, 0.3)' }}>
       <div className="container">
         {/* Top Feature Highlights Bar */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '1.5rem',
+        <div className="footer-features-grid" style={{
           paddingBottom: '3.5rem',
           borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
           marginBottom: '3.5rem'
@@ -75,12 +72,7 @@ export default function Footer() {
         </div>
 
         {/* 4-Column Layout */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '2.5rem',
-          marginBottom: '3.5rem'
-        }}>
+        <div className="footer-cols-grid" style={{ marginBottom: '3.5rem' }}>
           {/* Col 1: Brand story */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', marginBottom: '1.2rem' }}>
@@ -96,6 +88,10 @@ export default function Footer() {
                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.35)',
                   flexShrink: 0
                 }} 
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/logo-square.png";
+                }}
               />
               <div>
                 <h3 style={{ fontFamily: 'var(--font-serif)', color: '#fff', fontSize: '1.5rem', letterSpacing: '0.06em', textTransform: 'uppercase', margin: 0, lineHeight: 1.1 }}>

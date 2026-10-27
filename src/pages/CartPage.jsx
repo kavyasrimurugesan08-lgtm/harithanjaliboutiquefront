@@ -73,7 +73,7 @@ export default function CartPage() {
           Shopping Bag ({cart.reduce((s, i) => s + i.quantity, 0)} Items)
         </h1>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '2.5rem', alignItems: 'start' }} className="cart-grid">
+        <div className="cart-grid">
           {/* Left: Cart Items Table */}
           <div style={{ background: '#fff', borderRadius: '16px', border: '1px solid var(--purple-100)', padding: '1.5rem', boxShadow: 'var(--shadow-sm)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1rem', borderBottom: '1px solid var(--purple-100)', marginBottom: '1rem' }}>
@@ -87,30 +87,26 @@ export default function CartPage() {
               {cart.map((item, idx) => (
                 <div
                   key={`${item.productId}-${item.size}-${item.color}-${idx}`}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '90px 1fr auto',
-                    gap: '1.2rem',
-                    alignItems: 'center',
-                    paddingBottom: '1.5rem',
-                    borderBottom: '1px solid var(--gray-200)',
-                    position: 'relative'
-                  }}
+                  className="cart-item-row"
                 >
                   <img
-                    src={item.image}
+                    src={item.image || '/why-choose-banner.jpg'}
                     alt={item.name}
-                    style={{ width: 90, height: 110, objectFit: 'cover', borderRadius: '10px', background: 'var(--purple-50)' }}
+                    className="cart-item-img"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "/why-choose-banner.jpg";
+                    }}
                   />
 
-                  <div>
-                    <Link to={`/product/${item.productId}`} style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--purple-950)', marginBottom: '0.3rem', display: 'block' }}>
+                  <div className="cart-item-info">
+                    <Link to={`/product/${item.productId}`} className="cart-item-title">
                       {item.name}
                     </Link>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', fontSize: '0.82rem', color: 'var(--gray-600)', marginBottom: '0.8rem' }}>
-                      <span>Size: <strong style={{ color: 'var(--purple-900)' }}>{item.size}</strong></span>
+                    <div className="cart-item-meta">
+                      <span>Size: <strong>{item.size}</strong></span>
                       <span>•</span>
-                      <span>Color: <strong style={{ color: 'var(--purple-900)' }}>{item.color}</strong></span>
+                      <span>Color: <strong>{item.color}</strong></span>
                       {item.sku && (
                         <>
                           <span>•</span>
@@ -120,8 +116,8 @@ export default function CartPage() {
                     </div>
 
                     {/* Qty & Remove */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-                      <div style={{ display: 'inline-flex', alignItems: 'center', border: '1.5px solid var(--gray-300)', borderRadius: '6px' }}>
+                    <div className="cart-item-actions">
+                      <div className="cart-qty-control">
                         <button
                           onClick={() => updateCartQty(item.productId, item.size, item.color, item.quantity - 1)}
                           style={{ padding: '0.2rem 0.6rem', fontWeight: 700 }}
@@ -141,6 +137,7 @@ export default function CartPage() {
 
                       <button
                         onClick={() => removeFromCart(item.productId, item.size, item.color)}
+                        className="cart-remove-btn"
                         style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.8rem', color: 'var(--gray-500)' }}
                       >
                         <Trash2 size={15} />
@@ -149,12 +146,12 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--purple-950)' }}>
+                  <div className="cart-item-price-col">
+                    <div className="cart-item-price">
                       ₹{item.price * item.quantity}
                     </div>
                     {item.quantity > 1 && (
-                      <div style={{ fontSize: '0.75rem', color: 'var(--gray-500)' }}>
+                      <div className="cart-item-unit-price">
                         (₹{item.price} each)
                       </div>
                     )}

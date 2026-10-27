@@ -337,7 +337,15 @@ export default function AdminOrders() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                 {activeOrder.items?.map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.6rem 0.8rem', background: '#f8fafc', borderRadius: '8px' }}>
-                    <img src={item.image} alt="" style={{ width: 44, height: 52, objectFit: 'cover', borderRadius: '6px' }} />
+                    <img 
+                      src={item.image || '/why-choose-banner.jpg'} 
+                      alt="" 
+                      style={{ width: 44, height: 52, objectFit: 'cover', borderRadius: '6px' }} 
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/why-choose-banner.jpg";
+                      }}
+                    />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontWeight: 600, color: 'var(--purple-950)' }}>{item.name}</div>
                       <div style={{ fontSize: '0.78rem', color: '#64748b' }}>

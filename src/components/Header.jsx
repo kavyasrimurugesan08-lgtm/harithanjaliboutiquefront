@@ -45,6 +45,10 @@ export default function Header() {
               src="/logo.png" 
               alt="Harithanjali Boutique Logo" 
               className="brand-logo-img" 
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/logo-square.png";
+              }}
             />
             <div className="brand-text">
               <span className="brand-title">Harithanjali</span>
@@ -167,6 +171,10 @@ export default function Header() {
                   src="/logo.png" 
                   alt="Harithanjali Boutique Logo" 
                   style={{ width: '44px', height: '44px', objectFit: 'contain', borderRadius: '50%' }} 
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/logo-square.png";
+                  }}
                 />
                 <div>
                   <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--purple-950)' }}>

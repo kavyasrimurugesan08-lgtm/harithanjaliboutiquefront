@@ -54,7 +54,7 @@ export default function ContactPage() {
         </div>
 
         {/* 2-Column Section */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '3.5rem', alignItems: 'start', marginBottom: '4.5rem' }} className="contact-grid">
+        <div className="contact-grid" style={{ marginBottom: '4.5rem' }}>
           {/* Left: Boutique Info & Official Channels */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div style={{ background: '#fff', borderRadius: '20px', padding: '2.2rem', border: '1px solid var(--purple-100)', boxShadow: 'var(--shadow-sm)' }}>
@@ -187,7 +187,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="contact-form-row">
+                <div className="contact-form-row">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--gray-700)', marginBottom: '0.4rem' }}>
                       Phone / WhatsApp *

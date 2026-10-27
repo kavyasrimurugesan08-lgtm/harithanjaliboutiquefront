@@ -51,15 +51,19 @@ export default function WishlistPage() {
           </Link>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: '1.8rem'
-        }}>
+        <div className="product-grid">
           {wishlist.map(product => (
             <div key={product.id} className="product-card">
               <div className="product-img-wrapper">
-                <img src={product.images?.[0]} alt={product.name} className="product-img" />
+                <img 
+                  src={product.images?.[0] || '/why-choose-banner.jpg'} 
+                  alt={product.name} 
+                  className="product-img" 
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/why-choose-banner.jpg";
+                  }}
+                />
 
                 <button
                   type="button"

@@ -36,18 +36,22 @@ export default function AboutPage() {
         </div>
 
         {/* Editorial Split Section */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center', marginBottom: '5.5rem' }}>
+        <div className="editorial-split-grid" style={{ marginBottom: '5.5rem' }}>
           <div style={{ position: 'relative' }}>
             <img
               src={about.imageUrl}
               alt="Harithanjali Boutique Salem"
               style={{ width: '100%', height: '500px', objectFit: 'cover', borderRadius: '24px', boxShadow: 'var(--shadow-xl)' }}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/why-choose-banner.jpg";
+              }}
             />
             <div style={{
               position: 'absolute',
               bottom: '24px',
               left: '24px',
-              background: 'rgba(44, 8, 54, 0.92)',
+              background: 'rgba(42, 5, 32, 0.92)',
               backdropFilter: 'blur(10px)',
               color: '#fff',
               padding: '1.2rem 1.6rem',
@@ -91,11 +95,7 @@ export default function AboutPage() {
         </div>
 
         {/* 3 Pillars */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '2rem',
-          padding: '3.5rem',
+        <div className="about-pillars-grid" style={{
           background: 'linear-gradient(135deg, var(--purple-950), #350b41)',
           borderRadius: '24px',
           color: '#fff',

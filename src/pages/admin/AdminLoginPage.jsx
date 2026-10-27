@@ -61,6 +61,10 @@ export default function AdminLoginPage() {
               boxShadow: '0 8px 24px rgba(74, 18, 91, 0.25)',
               border: '3px solid #fff'
             }} 
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/logo-square.png";
+            }}
           />
 
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: 'var(--purple-950)', marginBottom: '0.2rem' }}>

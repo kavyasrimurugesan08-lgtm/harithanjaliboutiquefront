@@ -125,7 +125,7 @@ export default function ProductDetailPage() {
         </div>
 
         {/* Product Hero Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '3.5rem', marginBottom: '5rem' }}>
+        <div className="product-detail-grid" style={{ marginBottom: '5rem' }}>
           {/* Left: Gallery */}
           <div>
             {/* Main Stage */}
@@ -140,7 +140,7 @@ export default function ProductDetailPage() {
               marginBottom: '1rem'
             }}>
               <img
-                src={product.images?.[selectedImgIdx] || product.images?.[0]}
+                src={product.images?.[selectedImgIdx] || product.images?.[0] || '/why-choose-banner.jpg'}
                 alt={product.name}
                 style={{
                   position: 'absolute',
@@ -149,6 +149,10 @@ export default function ProductDetailPage() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover'
+                }}
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/why-choose-banner.jpg";
                 }}
               />
               <button
@@ -342,7 +346,7 @@ export default function ProductDetailPage() {
 
             {/* Action Buttons: Add to Bag, Buy Now, WhatsApp */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
+              <div className="product-actions-grid">
                 <button
                   onClick={handleAddToCart}
                   disabled={isOutOfStock}
@@ -375,16 +379,7 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Confidence Badges */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '1rem',
-              padding: '1.2rem',
-              borderRadius: '12px',
-              background: 'var(--purple-50)',
-              border: '1px solid var(--purple-100)',
-              textAlign: 'center'
-            }}>
+            <div className="confidence-badges-grid">
               <div>
                 <Truck size={20} style={{ color: 'var(--purple-700)', margin: '0 auto 0.3rem' }} />
                 <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--purple-950)' }}>Fast Shipping</div>
@@ -472,15 +467,19 @@ export default function ProductDetailPage() {
               </Link>
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-              gap: '1.5rem'
-            }}>
+            <div className="product-grid">
               {related.map(rel => (
                 <div key={rel.id} className="product-card">
                   <div className="product-img-wrapper">
-                    <img src={rel.images?.[0]} alt={rel.name} className="product-img" />
+                    <img 
+                      src={rel.images?.[0] || '/why-choose-banner.jpg'} 
+                      alt={rel.name} 
+                      className="product-img" 
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/why-choose-banner.jpg";
+                      }}
+                    />
                   </div>
                   <div className="product-info">
                     <Link to={`/product/${rel.id}`} className="product-title">{rel.name}</Link>

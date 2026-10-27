@@ -136,7 +136,15 @@ export default function OrderSuccessPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 {order.items.map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'center', paddingBottom: '0.8rem', borderBottom: '1px solid var(--gray-100)' }}>
-                    <img src={item.image} alt="" style={{ width: 48, height: 58, objectFit: 'cover', borderRadius: '6px' }} />
+                    <img 
+                      src={item.image || '/why-choose-banner.jpg'} 
+                      alt="" 
+                      style={{ width: 48, height: 58, objectFit: 'cover', borderRadius: '6px' }} 
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/why-choose-banner.jpg";
+                      }}
+                    />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontWeight: 600, color: 'var(--purple-950)', fontSize: '0.95rem' }}>{item.name}</div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--gray-500)' }}>

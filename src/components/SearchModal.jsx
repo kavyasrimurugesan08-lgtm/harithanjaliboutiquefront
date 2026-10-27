@@ -148,9 +148,13 @@ export default function SearchModal() {
                   }}
                 >
                   <img
-                    src={product.images?.[0]}
+                    src={product.images?.[0] || '/why-choose-banner.jpg'}
                     alt={product.name}
                     style={{ width: 50, height: 60, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "/why-choose-banner.jpg";
+                    }}
                   />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: '0.72rem', color: 'var(--purple-700)', textTransform: 'uppercase', fontWeight: 600 }}>

@@ -71,7 +71,7 @@ export default function HomePage() {
   return (
     <div className="homepage animate-fade-in">
       {/* 1. HERO SECTION - Editorial High Fashion */}
-      <section style={{
+      <section className="hero-section" style={{
         position: 'relative',
         background: 'linear-gradient(135deg, #2a0520 0%, #4e0d3c 45%, #380829 100%)',
         color: '#fff',
@@ -111,22 +111,17 @@ export default function HomePage() {
         }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            alignItems: 'center',
-            gap: '3.5rem'
-          }}>
+          <div className="hero-grid">
             {/* Left: Text & CTAs */}
             <div>
-              <div style={{
+              <div className="hero-badge-tag" style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
                 padding: '0.4rem 1.1rem',
                 borderRadius: 'var(--radius-full)',
-                background: 'rgba(212, 175, 55, 0.15)',
-                border: '1px solid rgba(212, 175, 55, 0.35)',
+                background: 'rgba(200, 157, 70, 0.18)',
+                border: '1px solid rgba(200, 157, 70, 0.4)',
                 color: '#FFD700',
                 fontSize: '0.78rem',
                 fontWeight: 700,
@@ -138,9 +133,9 @@ export default function HomePage() {
                 <span>{hero.badge}</span>
               </div>
 
-              <h1 style={{
+              <h1 className="hero-title" style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
+                fontSize: 'clamp(2rem, 5vw, 3.8rem)',
                 fontWeight: 700,
                 lineHeight: 1.15,
                 color: '#fff',
@@ -150,7 +145,7 @@ export default function HomePage() {
                 {hero.title}
               </h1>
 
-              <p style={{
+              <p className="hero-subtitle" style={{
                 fontSize: '1.1rem',
                 color: '#e2d3e7',
                 lineHeight: 1.7,
@@ -160,7 +155,7 @@ export default function HomePage() {
                 {hero.subtitle}
               </p>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+              <div className="hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
                 <Link to={hero.ctaLink || '/shop'} className="btn btn-gold btn-lg">
                   <span>{hero.ctaText || 'Shop Collection'}</span>
                   <ArrowRight size={18} />
@@ -176,7 +171,7 @@ export default function HomePage() {
               </div>
 
               {/* Quick credibility bullet tags */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.8rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)' }}>
+              <div className="hero-credibility" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.8rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f3e8f5', fontSize: '0.85rem' }}>
                   <CheckCircle size={17} style={{ color: '#FFD700' }} />
                   <span>Salem Boutique Store</span>
@@ -204,20 +199,25 @@ export default function HomePage() {
                 <img 
                   src={hero.imageUrl} 
                   alt="Harithanjali Boutique Collection"
+                  className="hero-img-wrap"
                   style={{ width: '100%', height: '540px', objectFit: 'cover' }}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/why-choose-banner.jpg";
+                  }}
                 />
 
                 {/* Floating Tag Overlay */}
-                <div style={{
+                <div className="hero-badge-overlay" style={{
                   position: 'absolute',
                   bottom: '24px',
                   left: '24px',
                   right: '24px',
                   padding: '1.2rem',
                   borderRadius: '16px',
-                  background: 'rgba(27, 4, 34, 0.85)',
+                  background: 'rgba(42, 5, 32, 0.88)',
                   backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  border: '1px solid rgba(200, 157, 70, 0.35)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between'
@@ -249,7 +249,7 @@ export default function HomePage() {
       </section>
 
       {/* 2. FEATURED CATEGORIES SECTION */}
-      <section style={{ padding: '5rem 0', background: 'var(--color-white)' }}>
+      <section style={{ padding: '5rem 0', background: 'var(--logo-cream-base)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 3.5rem' }}>
             <span className="badge badge-purple" style={{ marginBottom: '0.8rem' }}>
@@ -263,11 +263,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1.5rem'
-          }}>
+          <div className="category-grid">
             {categories.map((cat) => (
               <Link
                 key={cat.id}
@@ -303,12 +299,16 @@ export default function HomePage() {
                     objectFit: 'cover',
                     transition: 'transform 0.4s ease'
                   }}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/why-choose-banner.jpg";
+                  }}
                 />
                 {/* Gradient overlay */}
-                <div style={{
+                <div className="category-card-info" style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 40%, rgba(44, 8, 54, 0.88) 100%)',
+                  background: 'linear-gradient(180deg, rgba(42, 5, 32, 0.05) 30%, rgba(61, 8, 46, 0.9) 100%)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-end',
@@ -318,7 +318,7 @@ export default function HomePage() {
                   <h3 style={{ color: '#fff', fontSize: '1.15rem', marginBottom: '0.3rem', fontFamily: 'var(--font-serif)' }}>
                     {cat.name}
                   </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.8rem', color: '#f3d778', fontWeight: 600 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.8rem', color: '#f7e6b8', fontWeight: 600 }}>
                     <span>Shop Now</span>
                     <ArrowRight size={14} />
                   </div>
@@ -330,7 +330,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. NEW ARRIVALS & TRENDING DESIGNS */}
-      <section style={{ padding: '5rem 0', background: 'var(--purple-50)' }}>
+      <section style={{ padding: '5rem 0', background: 'linear-gradient(180deg, var(--logo-cream-base) 0%, var(--logo-cream-soft) 100%)' }}>
         <div className="container">
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '3rem', gap: '1rem' }}>
             <div>
@@ -351,20 +351,20 @@ export default function HomePage() {
           </div>
 
           {/* Product Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-            gap: '1.8rem'
-          }}>
+          <div className="product-grid">
             {newArrivals.map(product => {
               const isSaved = isInWishlist(product.id);
               return (
                 <div key={product.id} className="product-card">
                   <div className="product-img-wrapper">
                     <img 
-                      src={product.images?.[0]} 
+                      src={product.images?.[0] || '/why-choose-banner.jpg'} 
                       alt={product.name} 
                       className="product-img"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/why-choose-banner.jpg";
+                      }}
                     />
 
                     {/* Tags */}
@@ -448,20 +448,18 @@ export default function HomePage() {
       </section>
 
       {/* 4. CURATED EDITORIAL PROMO BANNER */}
-      <section style={{ padding: '4.5rem 0', background: 'var(--color-white)' }}>
+      <section style={{ padding: '4.5rem 0', background: 'var(--logo-cream-base)' }}>
         <div className="container">
-          <div style={{
+          <div className="promo-banner-wrap promo-grid" style={{
             borderRadius: '24px',
-            background: 'linear-gradient(135deg, #32073e 0%, #1e0326 100%)',
+            background: 'linear-gradient(135deg, #4e0d3c 0%, #2a0520 100%)',
             color: '#fff',
             overflow: 'hidden',
             boxShadow: 'var(--shadow-xl)',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            alignItems: 'center'
+            border: '1px solid rgba(200, 157, 70, 0.3)'
           }}>
             {/* Promo text */}
-            <div style={{ padding: '3.5rem 3rem' }}>
+            <div className="promo-text-wrap" style={{ padding: '3.5rem 3rem' }}>
               <span style={{ display: 'inline-block', fontSize: '0.78rem', color: '#FFD700', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.8rem' }}>
                 {promoBanner.tag}
               </span>
@@ -499,11 +497,15 @@ export default function HomePage() {
             </div>
 
             {/* Promo Image */}
-            <div style={{ height: '100%', minHeight: '380px', position: 'relative' }}>
+            <div className="promo-img-wrap" style={{ height: '100%', minHeight: '380px', position: 'relative' }}>
               <img
                 src={promoBanner.imageUrl}
                 alt="Boutique Promo"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/why-choose-banner.jpg";
+                }}
               />
             </div>
           </div>
@@ -511,14 +513,9 @@ export default function HomePage() {
       </section>
 
       {/* 5. SALEM BOUTIQUE SPOTLIGHT & CRAFTSMANSHIP */}
-      <section style={{ padding: '5rem 0', background: 'var(--purple-50)' }}>
+      <section style={{ padding: '5rem 0', background: 'linear-gradient(180deg, var(--logo-cream-soft) 0%, var(--logo-cream-base) 100%)' }}>
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            alignItems: 'center',
-            gap: '3.5rem'
-          }}>
+          <div className="editorial-split-grid">
             <div style={{ position: 'relative' }}>
               <img
                 src="/why-choose-banner.jpg"
@@ -526,19 +523,9 @@ export default function HomePage() {
                   e.currentTarget.src = "https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2026/JULY/18/Mgulr2uY_5c6ac82c469d4fe1a6796a62ae2c2b81.jpg";
                 }}
                 alt="Harithanjali Salem Boutique"
-                style={{ borderRadius: '20px', width: '100%', height: '480px', objectFit: 'cover', boxShadow: 'var(--shadow-lg)' }}
+                className="editorial-img"
               />
-              <div style={{
-                position: 'absolute',
-                bottom: '-20px',
-                right: '20px',
-                background: '#fff',
-                padding: '1.2rem 1.5rem',
-                borderRadius: '16px',
-                boxShadow: 'var(--shadow-lg)',
-                border: '1px solid var(--purple-100)',
-                maxWidth: '280px'
-              }}>
+              <div className="editorial-badge-card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#e5be3a', marginBottom: '0.2rem' }}>
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={15} fill="currentColor" />
@@ -620,11 +607,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.8rem'
-          }}>
+          <div className="reviews-grid">
             {[
               {
                 name: 'Sangeetha Murugesan',
@@ -682,7 +665,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. INSTAGRAM LOOKBOOK SHOWCASE */}
-      <section style={{ padding: '4.5rem 0', background: 'var(--purple-950)', color: '#fff' }}>
+      <section style={{ padding: '4.5rem 0', background: 'linear-gradient(135deg, #2a0520 0%, #3d082e 100%)', color: '#fff' }}>
         <div className="container">
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2.5rem', gap: '1rem' }}>
             <div>
@@ -706,11 +689,7 @@ export default function HomePage() {
             </a>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '1rem'
-          }}>
+          <div className="lookbook-grid">
             {[
               '/lookbook/lookbook_1.jpg',
               '/lookbook/lookbook_2.jpg',
@@ -746,6 +725,10 @@ export default function HomePage() {
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.08)'}
                   onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = `/lookbook/lookbook_${(i % 6) + 1}.jpg`;
+                  }}
                 />
                 <div style={{
                   position: 'absolute',
@@ -769,7 +752,7 @@ export default function HomePage() {
       </section>
 
       {/* 8. VIP CLUB / NEWSLETTER SUBSCRIPTION */}
-      <section style={{ padding: '4.5rem 0', background: 'var(--purple-100)' }}>
+      <section style={{ padding: '4.5rem 0', background: 'linear-gradient(135deg, #fdf1ec 0%, #f9eef5 50%, #fdf9f4 100%)', borderTop: '1px solid rgba(200, 157, 70, 0.25)', borderBottom: '1px solid rgba(200, 157, 70, 0.25)' }}>
         <div className="container" style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto' }}>
           <Sparkles size={32} style={{ color: 'var(--purple-700)', margin: '0 auto 1rem' }} />
           <h2 style={{ fontSize: '2.2rem', color: 'var(--purple-950)', marginBottom: '0.8rem' }}>
@@ -779,7 +762,7 @@ export default function HomePage() {
             Receive exclusive early access to festive launch collections, seasonal styling edits, and boutique discounts directly to your inbox.
           </p>
 
-          <form onSubmit={handleNewsletterSubmit} style={{ display: 'flex', gap: '0.6rem', maxWidth: '480px', margin: '0 auto' }}>
+          <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
             <input
               type="email"
               required

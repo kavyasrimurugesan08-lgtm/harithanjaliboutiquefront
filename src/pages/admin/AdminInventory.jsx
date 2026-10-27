@@ -146,7 +146,15 @@ export default function AdminInventory() {
                 <tr key={p.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '0.9rem 1rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                      <img src={p.images?.[0]} alt="" style={{ width: 40, height: 48, objectFit: 'cover', borderRadius: '6px' }} />
+                      <img 
+                        src={p.images?.[0] || '/why-choose-banner.jpg'} 
+                        alt="" 
+                        style={{ width: 40, height: 48, objectFit: 'cover', borderRadius: '6px' }} 
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = "/why-choose-banner.jpg";
+                        }}
+                      />
                       <div style={{ fontWeight: 600, color: 'var(--purple-950)' }}>{p.name}</div>
                     </div>
                   </td>

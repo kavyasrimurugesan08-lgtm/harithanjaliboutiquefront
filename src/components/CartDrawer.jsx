@@ -113,9 +113,13 @@ export default function CartDrawer() {
                   }}
                 >
                   <img 
-                    src={item.image} 
+                    src={item.image || '/why-choose-banner.jpg'} 
                     alt={item.name}
                     style={{ width: 70, height: 86, objectFit: 'cover', borderRadius: '8px', background: 'var(--purple-50)' }}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "/why-choose-banner.jpg";
+                    }}
                   />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--gray-900)', marginBottom: '0.25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>

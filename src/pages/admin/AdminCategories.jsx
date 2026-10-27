@@ -143,7 +143,15 @@ export default function AdminCategories() {
         {categories.map(cat => (
           <div key={cat.id} style={{ background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', display: 'flex', flexDirection: 'column' }}>
             <div style={{ height: '160px', position: 'relative' }}>
-              <img src={cat.imageUrl} alt={cat.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img 
+                src={cat.imageUrl} 
+                alt={cat.name} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/why-choose-banner.jpg";
+                }}
+              />
               <div style={{ position: 'absolute', top: 12, right: 12, display: 'flex', gap: 6 }}>
                 <button
                   onClick={() => openEditModal(cat)}

@@ -314,7 +314,6 @@ export default function ShopPage() {
               <button
                 className="btn btn-secondary btn-sm mobile-filter-btn"
                 onClick={() => setMobileFilterOpen(true)}
-                style={{ display: 'none' }}
               >
                 <Filter size={15} />
                 <span>Filters</span>
@@ -348,7 +347,7 @@ export default function ShopPage() {
         </div>
 
         {/* Layout: Sidebar + Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2.5rem', alignItems: 'start' }} className="shop-layout">
+        <div className="shop-layout">
           {/* Desktop Left Sidebar */}
           <aside className="shop-sidebar" style={{ background: '#fff', padding: '1.8rem', borderRadius: '16px', border: '1px solid var(--purple-100)', position: 'sticky', top: '100px' }}>
             <FilterContent />
@@ -402,20 +401,20 @@ export default function ShopPage() {
                 </button>
               </div>
             ) : (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                gap: '1.8rem'
-              }}>
+              <div className="product-grid">
                 {filteredProducts.map(product => {
                   const isSaved = isInWishlist(product.id);
                   return (
                     <div key={product.id} className="product-card">
                       <div className="product-img-wrapper">
                         <img 
-                          src={product.images?.[0]} 
+                          src={product.images?.[0] || '/why-choose-banner.jpg'} 
                           alt={product.name} 
                           className="product-img"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = "/why-choose-banner.jpg";
+                          }}
                         />
 
                         <div className="product-tags">

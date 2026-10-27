@@ -1,28 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { initialData } from '../data/initialData';
 
 const ShopContext = createContext();
 
 export function ShopProvider({ children }) {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [settings, setSettings] = useState({
-    storeName: 'Harithanjali Boutique',
-    tagline: 'Trendy Collections for Every You.',
-    currency: '₹',
-    currencyCode: 'INR',
-    shippingCharge: 100,
-    freeShippingThreshold: 1999,
-    phone: '8144052522',
-    address: '2/32 Perumal Kovil Medu, Main Road, Seelanaickanpatti, Salem – 636201.',
-    whatsappNumber: '918144052522',
-    instagramHandle: '@_harithanjali_boutique',
-    instagramUrl: 'https://instagram.com/_harithanjali_boutique',
-    youtubeName: 'Harithanjali Boutique',
-    facebookName: 'Harithanjali Boutique',
-    workingHours: 'Mon - Sat: 10:00 AM - 9:00 PM | Sun: 11:00 AM - 8:00 PM'
-  });
-  const [content, setContent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState(initialData.products);
+  const [categories, setCategories] = useState(initialData.categories);
+  const [settings, setSettings] = useState(initialData.settings);
+  const [content, setContent] = useState(initialData.content);
+  const [loading, setLoading] = useState(false);
 
   // Cart state persisted to localStorage
   const [cart, setCart] = useState(() => {
@@ -71,33 +57,43 @@ export function ShopProvider({ children }) {
     } catch (e) {}
   }, [wishlist]);
 
-  // Fetch initial data from backend API
+  // Fetch initial data from backend API with fallback preservation
   const refreshData = async () => {
     try {
-      setLoading(true);
+      const apiBase = import.meta.env.VITE_API_URL || '';
+      const safeFetch = async (endpoint) => {
+        try {
+          const res = await fetch(`${apiBase}${endpoint}`);
+          if (!res.ok) return null;
+          const contentType = res.headers.get('content-type') || '';
+          if (!contentType.includes('application/json')) return null;
+          return await res.json();
+        } catch {
+          return null;
+        }
+      };
+
       const [resProd, resCat, resSet, resCnt] = await Promise.allSettled([
-        fetch('/api/products').then(r => r.json()),
-        fetch('/api/categories').then(r => r.json()),
-        fetch('/api/settings').then(r => r.json()),
-        fetch('/api/content').then(r => r.json())
+        safeFetch('/api/products'),
+        safeFetch('/api/categories'),
+        safeFetch('/api/settings'),
+        safeFetch('/api/content')
       ]);
 
-      if (resProd.status === 'fulfilled' && resProd.value?.success) {
+      if (resProd.status === 'fulfilled' && resProd.value?.success && Array.isArray(resProd.value.data) && resProd.value.data.length > 0) {
         setProducts(resProd.value.data);
       }
-      if (resCat.status === 'fulfilled' && resCat.value?.success) {
+      if (resCat.status === 'fulfilled' && resCat.value?.success && Array.isArray(resCat.value.data) && resCat.value.data.length > 0) {
         setCategories(resCat.value.data);
       }
-      if (resSet.status === 'fulfilled' && resSet.value?.success) {
+      if (resSet.status === 'fulfilled' && resSet.value?.success && resSet.value.data) {
         setSettings(resSet.value.data);
       }
-      if (resCnt.status === 'fulfilled' && resCnt.value?.success) {
+      if (resCnt.status === 'fulfilled' && resCnt.value?.success && resCnt.value.data) {
         setContent(resCnt.value.data);
       }
     } catch (err) {
-      console.error('Failed to load shop data:', err);
-    } finally {
-      setLoading(false);
+      console.warn('Backend API unavailable, using embedded catalog data:', err);
     }
   };
 

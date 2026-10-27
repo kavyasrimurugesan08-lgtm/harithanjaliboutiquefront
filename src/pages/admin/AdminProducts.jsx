@@ -314,9 +314,13 @@ export default function AdminProducts() {
                     <td style={{ padding: '0.9rem 1rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
                         <img
-                          src={p.images?.[0] || 'https://via.placeholder.com/60'}
+                          src={p.images?.[0] || '/why-choose-banner.jpg'}
                           alt={p.name}
                           style={{ width: 44, height: 54, objectFit: 'cover', borderRadius: '6px', background: 'var(--purple-50)' }}
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = "/why-choose-banner.jpg";
+                          }}
                         />
                         <div>
                           <div style={{ fontWeight: 600, color: 'var(--purple-950)' }}>{p.name}</div>

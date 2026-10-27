@@ -11,6 +11,7 @@ import SearchModal from './components/SearchModal';
 import QuickViewModal from './components/QuickViewModal';
 import CartDrawer from './components/CartDrawer';
 import Toast from './components/Toast';
+import AiAssistant from './components/AiAssistant';
 
 // Storefront pages
 import HomePage from './pages/HomePage';
@@ -84,6 +85,7 @@ function AppLayout() {
           <QuickViewModal />
           <CartDrawer />
           <Toast />
+          <AiAssistant />
         </>
       )}
     </div>
