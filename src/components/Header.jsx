@@ -28,9 +28,30 @@ export default function Header() {
       {/* Announcement Bar */}
       {announcement.enabled && (
         <div className="announcement-bar">
-          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem' }}>
-            <Sparkles size={14} style={{ color: '#FFD700', flexShrink: 0 }} />
-            <span>{announcement.text}</span>
+          {/* Subtle decorative left motif */}
+          <svg
+            width="28"
+            height="18"
+            viewBox="0 0 28 18"
+            fill="none"
+            style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.45, pointerEvents: 'none' }}
+            className="hide-mobile"
+          >
+            <path d="M2 14C7 10 12 6 18 4M18 4C14 8 11 12 9 16M18 4C21 3 24 3 26 2" stroke="#c89d46" strokeWidth="1.1" strokeLinecap="round" />
+            <circle cx="22" cy="7" r="1" fill="#c89d46" />
+            <circle cx="13" cy="3" r="1" fill="#c89d46" />
+          </svg>
+
+          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+              <path d="M12 2L14.2 9.8L22 12L14.2 14.2L12 22L9.8 14.2L2 12L9.8 9.8L12 2Z" fill="#e5be67" />
+              <circle cx="19" cy="5" r="1.5" fill="#e5be67" />
+            </svg>
+            <span>{(announcement.text || '').replace(/^✨\s*/, '')}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+              <path d="M12 2L14.2 9.8L22 12L14.2 14.2L12 22L9.8 14.2L2 12L9.8 9.8L12 2Z" fill="#e5be67" />
+              <circle cx="19" cy="5" r="1.5" fill="#e5be67" />
+            </svg>
           </div>
         </div>
       )}

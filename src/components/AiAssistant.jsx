@@ -141,83 +141,62 @@ export default function AiAssistant() {
 
   return (
     <>
-      {/* Floating Launcher Button */}
+      {/* Floating Launcher Pill Button */}
       <div 
         className="ai-assistant-launcher"
         style={{
           position: 'fixed',
-          bottom: '24px',
+          bottom: '22px',
           right: '24px',
           zIndex: 99,
           display: 'flex',
-          alignItems: 'center',
-          gap: '0.6rem'
+          alignItems: 'center'
         }}
       >
-        {!isOpen && (
-          <div 
-            onClick={() => setIsOpen(true)}
-            className="ai-launcher-tooltip hide-mobile"
-            style={{
-              background: 'rgba(42, 5, 32, 0.94)',
-              color: '#fff',
-              padding: '0.45rem 0.9rem',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-              boxShadow: 'var(--shadow-md)',
-              border: '1px solid rgba(200, 157, 70, 0.4)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              animation: 'floatGentle 3s ease-in-out infinite'
-            }}
-          >
-            <Sparkles size={13} style={{ color: '#FFD700' }} />
-            <span>Ask Haritha AI Stylist</span>
-          </div>
-        )}
-
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close AI Stylist Chat' : 'Open Haritha AI Stylist'}
           style={{
-            width: '56px',
-            height: '56px',
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #581142 0%, #2a0520 100%)',
-            border: '2px solid rgba(200, 157, 70, 0.65)',
-            boxShadow: '0 6px 24px rgba(88, 17, 66, 0.45), 0 0 16px rgba(200, 157, 70, 0.35)',
-            color: '#fff',
+            padding: isOpen ? '0' : '0.68rem 1.25rem',
+            width: isOpen ? '48px' : 'auto',
+            height: isOpen ? '48px' : 'auto',
+            borderRadius: '9999px',
+            background: 'linear-gradient(135deg, #27051c 0%, #160210 100%)',
+            border: '1.5px solid rgba(212, 168, 79, 0.65)',
+            boxShadow: '0 8px 28px rgba(18, 2, 13, 0.7), 0 0 16px rgba(212, 168, 79, 0.22)',
+            color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '0.55rem',
             cursor: 'pointer',
-            transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            transform: isOpen ? 'rotate(90deg)' : 'scale(1)'
+            transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
           }}
-          onMouseEnter={e => e.currentTarget.style.transform = isOpen ? 'rotate(90deg) scale(1.08)' : 'scale(1.08)'}
-          onMouseLeave={e => e.currentTarget.style.transform = isOpen ? 'rotate(90deg)' : 'scale(1)'}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-2px) scale(1.03)';
+            e.currentTarget.style.borderColor = 'rgba(243, 215, 120, 0.9)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.borderColor = 'rgba(212, 168, 79, 0.65)';
+          }}
         >
           {isOpen ? (
-            <X size={24} style={{ color: '#FFD700' }} />
+            <X size={20} style={{ color: '#e5be67' }} />
           ) : (
-            <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Sparkles size={24} style={{ color: '#FFD700' }} />
-              <span 
-                style={{
-                  position: 'absolute',
-                  top: -6,
-                  right: -6,
-                  width: 10,
-                  height: 10,
-                  borderRadius: '50%',
-                  background: '#10b981',
-                  border: '2px solid #2a0520'
-                }} 
-              />
-            </div>
+            <>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                <path d="M12 3C7.03 3 3 6.69 3 11.25C3 13.06 3.64 14.74 4.73 16.1L3.5 20.2L7.85 18.92C9.12 19.45 10.52 19.75 12 19.75C16.97 19.75 21 16.06 21 11.5C21 6.94 16.97 3 12 3Z" stroke="#e5be67" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9.6 8.8C9.8 8.4 10.1 8.4 10.4 8.4C10.6 8.4 10.8 8.4 10.9 8.7C11.1 9.1 11.4 9.8 11.4 9.9C11.5 10.1 11.5 10.2 11.3 10.4C11.2 10.6 11 10.7 10.9 10.9C10.7 11.1 10.6 11.2 10.8 11.5C11 11.8 11.5 12.6 12.2 13.2C13 13.8 13.6 14 14 14.2C14.3 14.3 14.5 14.3 14.7 14.1C14.9 13.9 15.3 13.4 15.5 13.1C15.7 12.9 15.9 12.9 16.1 13C16.4 13.1 17.1 13.5 17.4 13.7C17.7 13.8 17.8 13.9 17.9 14.1C17.9 14.3 17.9 14.8 17.6 15.3C17.3 15.8 16.5 16.2 15.9 16.2C15.4 16.2 14.8 16.1 13.4 15.5C11.5 14.7 10.2 12.9 10 12.6C9.8 12.3 9.1 11.4 9.1 10.4C9.1 9.4 9.4 9 9.6 8.8Z" fill="#e5be67" />
+              </svg>
+              <span style={{ fontSize: '0.84rem', fontWeight: 600, letterSpacing: '0.02em', color: '#ffffff', whiteSpace: 'nowrap' }}>
+                Ask Haritha AI Stylist
+              </span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ marginLeft: '-2px', marginTop: '-6px', flexShrink: 0 }}>
+                <path d="M12 2L14 9.5L21.5 11.5L14 13.5L12 21L10 13.5L2.5 11.5L10 9.5L12 2Z" fill="#e5be67" />
+                <circle cx="19" cy="4" r="2" fill="#e5be67" />
+              </svg>
+            </>
           )}
         </button>
       </div>
