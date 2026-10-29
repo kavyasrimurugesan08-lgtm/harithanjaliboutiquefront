@@ -236,8 +236,15 @@ export default function HomePage() {
     subtitle: 'Indulge in pure mulberry silks, intricate zardozi embroidery, and handcrafted designer co-ords tailored to your perfection.',
     discountCode: 'HARITHA10',
     discountText: 'Use code HARITHA10 for 10% off your first festive purchase',
-    imageUrl: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80'
+    imageUrl: '/hero/hero_1.jpg'
   };
+
+  const promoImageUrl =
+    !promoBanner.imageUrl ||
+    promoBanner.imageUrl.includes('1609357605129') ||
+    promoBanner.imageUrl.includes('1583391733956')
+      ? '/hero/hero_1.jpg'
+      : promoBanner.imageUrl;
 
   const newArrivals = products.filter(p => p.isNewArrival || p.isFeatured).slice(0, 8);
   const bestSellers = products.slice(0, 4);
@@ -748,14 +755,14 @@ export default function HomePage() {
             </div>
 
             {/* Promo Image */}
-            <div className="promo-img-wrap" style={{ height: '100%', minHeight: '380px', position: 'relative' }}>
+            <div className="promo-img-wrap" style={{ height: '100%', minHeight: '420px', position: 'relative' }}>
               <img
-                src={promoBanner.imageUrl}
+                src={promoImageUrl}
                 alt="Boutique Promo"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%' }}
                 onError={(e) => {
                   e.currentTarget.onerror = null;
-                  e.currentTarget.src = "/why-choose-banner.jpg";
+                  e.currentTarget.src = "/hero/hero_1.jpg";
                 }}
               />
             </div>
@@ -767,14 +774,16 @@ export default function HomePage() {
       <section className="home-section" style={{ padding: '5rem 0', background: 'linear-gradient(180deg, var(--logo-cream-soft) 0%, var(--logo-cream-base) 100%)' }}>
         <div className="container">
           <div className="editorial-split-grid">
-            <div style={{ position: 'relative' }}>
+            <div className="editorial-media-wrap" style={{ position: 'relative' }}>
               <img
                 src="/why-choose-banner.jpg"
                 onError={(e) => {
-                  e.currentTarget.src = "https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2026/JULY/18/Mgulr2uY_5c6ac82c469d4fe1a6796a62ae2c2b81.jpg";
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/hero/hero_4.jpg";
                 }}
                 alt="Harithanjali Salem Boutique"
                 className="editorial-img"
+                style={{ objectPosition: 'center 12%' }}
               />
               <div className="editorial-badge-card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#e5be3a', marginBottom: '0.2rem' }}>
@@ -943,12 +952,12 @@ export default function HomePage() {
 
           <div className="lookbook-grid">
             {[
-              '/lookbook/lookbook_1.jpg',
-              '/lookbook/lookbook_2.jpg',
-              '/lookbook/lookbook_3.jpg',
-              '/lookbook/lookbook_4.jpg',
-              '/lookbook/lookbook_5.jpg',
-              '/lookbook/lookbook_6.jpg'
+              '/hero/hero_1.jpg',
+              '/hero/hero_2.jpg',
+              '/hero/hero_3.jpg',
+              '/hero/hero_4.jpg',
+              '/hero/hero_5.jpg',
+              '/lookbook/dress_6.jpg'
             ].map((imgUrl, i) => (
               <a
                 key={i}
@@ -957,7 +966,7 @@ export default function HomePage() {
                 rel="noreferrer"
                 style={{
                   position: 'relative',
-                  paddingTop: '100%',
+                  paddingTop: '122%',
                   borderRadius: '12px',
                   overflow: 'hidden',
                   display: 'block'
@@ -973,6 +982,7 @@ export default function HomePage() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    objectPosition: 'center 12%',
                     transition: 'transform 0.3s ease'
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.08)'}

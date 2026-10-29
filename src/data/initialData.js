@@ -35,7 +35,7 @@ export const initialData = {
       ctaLink: "/shop",
       secondaryCtaText: "New Arrivals",
       secondaryCtaLink: "/shop?new=true",
-      imageUrl: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1200&q=80"
+      imageUrl: "/hero/hero_1.jpg"
     },
     promoBanner: {
       tag: "EXCLUSIVE SALEM BOUTIQUE OFFER",
@@ -43,7 +43,7 @@ export const initialData = {
       subtitle: "Indulge in pure mulberry silks, intricate zardozi embroidery, and handcrafted designer co-ords tailored to your perfection.",
       discountCode: "HARITHA10",
       discountText: "Use code HARITHA10 for 10% off your first festive purchase",
-      imageUrl: "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=1000&q=80"
+      imageUrl: "/hero/hero_1.jpg"
     },
     about: {
       title: "Crafted with Passion, Rooted in Salem",
@@ -55,7 +55,7 @@ export const initialData = {
         "Exclusive Limited-Edition Seasonal Releases",
         "Fast & Insured Pan-India Express Delivery"
       ],
-      imageUrl: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=85"
+      imageUrl: "/hero/hero_4.jpg"
     }
   },
   categories: [
@@ -163,7 +163,7 @@ export const initialData = {
       fabric: "Handwoven Chanderi Tissue Silk",
       careInstructions: "Dry clean only.",
       images: [
-        "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80"
+        "/lookbook/test_1.jpg"
       ],
       sizes: ["Free Size (Includes Blouse)"],
       colors: ["Golden Ochre", "Mustard Yellow", "Honey Gold"],
